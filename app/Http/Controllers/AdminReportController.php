@@ -69,7 +69,7 @@ class AdminReportController extends Controller
                     'status' => $status,
                     'viewed_number' => $participantCount,
                     'is_alert' => $doesntWatchFor48Hours,
-                    'number of day which the user didnt watch the video on it until finish treatement' => $dayLong
+                    'number of day which the user didn\'t watch the video on it until finish treatement' => $dayLong
 
 
                 ];
