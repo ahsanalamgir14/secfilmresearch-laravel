@@ -55,8 +55,8 @@ class AdminReportController extends Controller
                     $status = "Pending 2nd questionnaire";
                 }
 
-                $dateOfBirth = $Participant->age_group ;
-                $age = Carbon::parse($dateOfBirth)->age;
+                $age = $Participant->age_group ;
+                // $age = Carbon::parse($dateOfBirth)->age;
 
                 return [
                     'id' => $Participant->id,
