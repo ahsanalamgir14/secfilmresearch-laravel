@@ -52,7 +52,7 @@ class AdminReportController extends Controller
                 $status = $Participant->status;
 
                 if($status == 'finish watch'){
-                    $status = "finish tratement but didnt't answer the questionnier";
+                    $status = "Pending 2nd questionnaire";
                 }
 
                 $dateOfBirth = $Participant->age_group ;
