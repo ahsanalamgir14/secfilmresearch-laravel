@@ -14,9 +14,15 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
 
-        $schedule->command('app:send-daily-reminder')->daily();
+        $schedule->command('app:send-daily-reminder')
+            ->daily()
+            ->timezone('Australia/Brisbane')
+            ->at('06:00');
         // $schedule->command('app:send-daily-reminder')->dailyAt('13:00');
-        $schedule->command('app:send-admin-alert')->daily();
+        $schedule->command('app:send-admin-alert')           
+            ->daily()
+            ->timezone('Australia/Brisbane')
+            ->at('06:00');
 
         // $schedule->command('app:send-daily-reminder')->everyMinute();
         // $schedule->command('app:send-daily-reminder')->everyFiveSeconds();
