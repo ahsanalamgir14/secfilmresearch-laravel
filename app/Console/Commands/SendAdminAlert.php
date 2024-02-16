@@ -40,7 +40,15 @@ class SendAdminAlert extends Command
         $participants = Participant::all();
         
         foreach ($participants as $participant) {
-            if($participant->status == 'in progress'){
+            $participantCount = WatchLog::where('participant_id', $participant->id)->count();
+            $participantRegisteringDate = $participant->created_at->format('Y-m-d');
+            $dayLong = 0;
+            if ($participant->status == 'finish watch' || $participant->status == 'completed') {
+                $dayLong = Carbon::parse($participant->finish_watch_at)->diffInDays(Carbon::parse($participantRegisteringDate)) - $participantCount + 1;
+            } else {
+                $dayLong = Carbon::parse($today)->diffInDays(Carbon::parse($participantRegisteringDate)) - $participantCount + 1;
+            }
+            if($participant->status == 'in progress' && $dayLong >= 0 && $dayLong < 10) {
                 $whatchForYesterday = WatchLog::whereDate('watched_at', $yesterday)->where('participant_id', $participant->id)->exists();
                 $whatchBeforeYesterday = WatchLog::whereDate('watched_at', $dayBeforeYesterday)->where('participant_id', $participant->id)->exists();
                 $whatchforToday = WatchLog::whereDate('watched_at', $today)->where('participant_id', $participant->id)->exists();
